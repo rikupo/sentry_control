@@ -393,7 +393,7 @@ void Master::HALUpdate(TIM_HandleTypeDef *htim) {
                 }
                 if (rail_counter < rail_move_counter_thresh) { // ここでrail_counterが一定時間以内なら速度指令を与える．
                     // 0から緩やかに上昇して中心で1になりthresh付近めがけてまた緩やかに0まで減衰してほしい
-                    
+                    // これ速度制御だから線形に変更してもいんじゃね．．．？
                     rail_motors[0].SetRefValue(rail_speed_extinction * rail_direction* M_PI * MECHANISM_PARAM::MAX_RAIL_ROLLER_RPM*3);
                     rail_motors[1].SetRefValue(rail_speed_extinction * rail_direction* M_PI * MECHANISM_PARAM::MAX_RAIL_ROLLER_RPM*3);
                 }else{ // 一定を超えたら逆方向に更新
